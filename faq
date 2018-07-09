@@ -1,0 +1,83 @@
+<style>
+  .a{
+	display: none;
+	padding: 50px 40px;
+	color: white;
+	background-color: #222222;
+	margin-bottom:0;
+}
+
+.q{
+	cursor: pointer;
+	margin: 0;
+	position: relative;
+	height: 215px;
+	width: 100%;
+	z-index:5;
+	overflow: hidden;
+}
+
+</style>
+
+
+<ul class="about">
+
+  <?php foreach (get_field("propos") as $about) : ?>
+    //Question
+    <li class="q">
+
+      <div class="plus"></div>
+
+        <div class="mask-about"></div>
+
+        <div class="text-q">
+
+          <?php echo $about['titre']; ?>
+
+        </div>	 
+
+        <div class="square">
+
+          <img class="arrow-about" src="/wp-content/themes/bravad/assets/src/img/plus.svg" alt="FAQ"/>
+
+        </div>
+
+    </li>
+      //Réponse
+      <li class="a"><?php echo $about['texte']; ?></li>
+
+    <?php endforeach; ?>
+
+</ul>
+
+
+<script>
+		// Question handler
+
+  jQuery('li.q').on(action, function(){
+
+    // gets next element
+
+    // opens .a of selected question
+
+    jQuery(this).next().slideToggle(speed)
+
+    // selects all other answers and slides up any open answer
+
+    .siblings('.about li.a').slideUp();
+
+    // Grab img from clicked question
+
+     var img = jQuery(this).find('img');
+
+    // remove Rotate class from all images except the active
+
+    jQuery('img').not(img).removeClass('rotate');
+
+    // toggle rotate class
+
+    img.toggleClass('rotate');
+  });
+});
+
+</script>
